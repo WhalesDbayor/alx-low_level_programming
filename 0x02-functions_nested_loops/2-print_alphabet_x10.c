@@ -3,6 +3,8 @@
 /**
  * print_alphabet_x10 - print alphabet 10 times
  *
+ * description: print alphabet 10 times
+ *
  * Return: void
  */
 

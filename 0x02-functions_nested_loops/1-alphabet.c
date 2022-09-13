@@ -2,8 +2,9 @@
 
 
 /**
- *
  * print_alphabet - print alphabets
+ *
+ * descriptiin: print alphabets
  *
  * Return: void
  *
