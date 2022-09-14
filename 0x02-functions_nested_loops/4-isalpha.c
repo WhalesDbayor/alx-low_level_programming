@@ -3,6 +3,8 @@
 /**
  * _isalpha - checks for alphabetic character
  *
+ * @c: c is an ascii character
+ *
  * description: checks for alphabetic character
  *
  * Return: 1 (if letter)

@@ -4,6 +4,8 @@
 /**
  * print_to_98 - prints numbers from n to 98
  *
+ * @n: first integer
+ *
  * Description: prints all natural number from n to 98
  *
  * Return: void

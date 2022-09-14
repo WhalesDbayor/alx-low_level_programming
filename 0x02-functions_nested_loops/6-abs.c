@@ -3,6 +3,8 @@
 /**
  * _abs - computes absolute value of an integer
  *
+ * @n: n is an integer
+ *
  * description: absolute value
  *
  * Return: n

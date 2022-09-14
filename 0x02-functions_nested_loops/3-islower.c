@@ -3,6 +3,8 @@
 /**
  * _islower - checks for lowercase
  *
+ * @c: c is an ascii character
+ *
  * description: checks for lowercase
  *
  * Return: 1 (success)

@@ -2,6 +2,9 @@
 
 /**
  * print_sign - prints the sign of a number
+ *
+ * @n: n is an integer
+ *
  * description: prints sign
  *
  * Return: 1, 0 or -1
