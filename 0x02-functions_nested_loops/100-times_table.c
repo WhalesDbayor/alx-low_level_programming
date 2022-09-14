@@ -1,8 +1,9 @@
 #include "main.h"
 
+
 /**
  * print_times_table - prints the times table
- * @n: integer mulitplier
+ * @n: integer multiplier
  *
  * Description: prints the times table
  *
