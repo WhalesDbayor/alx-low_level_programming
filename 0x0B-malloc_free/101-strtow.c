@@ -1,98 +1,87 @@
-#include "main.h"
+#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
-/**
- * word_count - count # of words to build 2D array
- * @s: char pointer
- * Return: num of words
- */
-int word_count(char *s)
-{
-	int words;
-	int i;
 
-	words = 0;
-	i = 0;
-	while (s[i] != '\0')
+/**
+ * number - function to calculate number of words
+ * @str: string being passed to check for words
+ *
+ * Return: number of words
+ */
+int number(char *str)
+{
+	int a, num = 0;
+
+	for (a = 0; str[a] != '\0'; a++)
 	{
-		if (s[i] != ' ' && (s[i + 1] == ' ' || s[i + 1] == '\0'))
-			words++;
-		i++;
+		if (*str == ' ')
+			str++;
+		else
+		{
+			for (; str[a] != ' ' && str[a] != '\0'; a++)
+				str++;
+			num++;
+		}
 	}
-	return (words);
+	return (num);
 }
 /**
- * strtow - function splits a string into words
- *
- * @s: char pointer
- *
- * Return: pointer to array of strings
+ * free_everything - frees the memory
+ * @string: pointer values being passed for freeing
+ * @i: counter
+ */
+void free_everything(char **string, int i)
+{
+	for (; i > 0;)
+		free(string[--i]);
+	free(string);
+}
+
+/**
+ * strtow - function that splits string into words
+ * @str: string being passed
+ * Return: null if string is empty or null or function fails
  */
 char **strtow(char *str)
 {
-	int i, j, k, m, words;
-	char **s;
+	int total_words = 0, b = 0, c = 0, length = 0;
+	char **words, *found_word;
 
-	if (str == NULL || str == '\0')
+	if (str == 0 || *str == 0)
 		return (NULL);
-
-	words = word_count(str);
-
-	s = malloc((words + 1) * sizeof(char *));
-	if (s == NULL)
+	total_words = number(str);
+	if (total_words == 0)
 		return (NULL);
-	i = 0;
-	m = 0;
-	while (i < words)
+	words = malloc((total_words + 1) * sizeof(char *));
+	if (words == 0)
+		return (NULL);
+	for (; *str != '\0' &&  b < total_words;)
 	{
-		j = m;
-		while (str[j] != '\0')
+		if (*str == ' ')
+			str++;
+		else
 		{
-			if (str[j] != ' ' && str[j + 1] == ' ')
+			found_word = str;
+			for (; *str != ' ' && *str != '\0';)
 			{
-				j = m + 1;
-				break;
+				length++;
+				str++;
 			}
-			j++;
-		}
-		s[i] = malloc(j * sizeof(char));
-		if (s[i] == NULL)
-		{
-			while (i >= 0)
+			words[b] = malloc((length + 1) * sizeof(char));
+			if (words[b] == 0)
 			{
-				free(s[i]);
-				i--;
+				free_everything(words, b);
+				return (NULL);
 			}
-			free(s);
+			while (*found_word != ' ' && *found_word != '\0')
+			{
+				words[b][c] = *found_word;
+				found_word++;
+				c++;
+			}
+			words[b][c] = '\0';
+			b++; c = 0; length = 0; str++;
 		}
-		i++;
 	}
-	i = 0;
-	j = 0;
-	if (str[0] == ' ')
-		j++;
-	while (i < words)
-	{
-		k = 0;
-		while (str[j] != '\0')
-		{
-			if (str[j] != ' ')
-			{
-				s[i][k] = str[j];
-				j++;
-				k++;
-			}
-			else if (str[j] == ' ' && str[j - 1] != ' ')
-			{
-				j++;
-				k++;
-				break;
-			}
-			else
-				j++;
-		}
-		s[i][k] = '\0';
-		i++;
-	}
-	return (s);
+	return (words);
 }
