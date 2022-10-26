@@ -15,6 +15,7 @@ int main(void)
 	listint_t hello = {8, NULL};
 	size_t n;
 	head = &hello;
+// new malloc	
 	new = malloc(sizeof(listint_t));
 
 	if (new == NULL)
